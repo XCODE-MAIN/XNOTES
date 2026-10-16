@@ -1,0 +1,53 @@
+{
+  "name": "xnotes",
+  "version": "0.1.0",
+  "description": "Bloco de notas open source com IA integrada (modo trabalho e modo código) para Linux",
+  "main": "main.js",
+  "author": "Xavier Pereira <xpereira7@users.noreply.github.com>",
+  "homepage": "https://github.com/XCODE-MAIN/XNOTES",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "start:nosandbox": "electron . --no-sandbox",
+    "dist": "electron-builder --publish never",
+    "dist:win": "electron-builder --win --publish never",
+    "dist:linux": "electron-builder --linux --publish never"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.xcode.xnotes",
+    "productName": "XNotes",
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**",
+      "package.json"
+    ],
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Utility",
+      "maintainer": "Xavier Pereira <xpereira7@users.noreply.github.com>",
+      "artifactName": "XNotes-${version}.${ext}"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "XNotes-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "XNotes-Portable-${version}.${ext}"
+    }
+  }
+}
